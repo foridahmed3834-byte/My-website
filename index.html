@@ -259,6 +259,22 @@
     padding:22px 24px;
     margin-bottom:18px;
     box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+  article.post .post-image{
+    display:block;
+    width:calc(100% + 48px);
+    margin:-22px -24px 16px;
+    max-width:calc(100% + 48px);
+    aspect-ratio:16/9;
+    object-fit:cover;
+  }
+  @media (max-width:480px){
+    article.post .post-image{
+      width:calc(100% + 32px);
+      max-width:calc(100% + 32px);
+      margin:-18px -16px 16px;
+    }
   }
   article.post h3{font-size:18px;}
   article.post .post-date{
@@ -523,97 +539,86 @@
 
   <section id="blog">
     <h2>Islamic Blog</h2>
+    <div id="blog-posts-container"></div>
+  </section>
 
-    <article class="post" id="blog-post-1">
-      <span class="post-date">Published on 23-10-2023</span>
-      <h3>Blog Post 1: Islamic Story of Beauty</h3>
-      <p class="post-body">
-        আল্লাহর ওপর অটল বিশ্বাস রাখলে জীবনের কঠিন পথগুলোও অনেকটা সহজ হয়ে যায়, কারণ তিনি সবসময় ধৈর্যশীলদের সাথেই থাকেন ।
-      </p>
-      <div class="blog-interactions">
-        <button class="icon-btn like-button" onclick="likePost(1)" aria-label="Like">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h6.83a2 2 0 0 1 1.94 2.5l-2.29 9A2 2 0 0 1 18.55 23H7a2 2 0 0 1-2-2V12a2 2 0 0 1 .59-1.41L11.17 5A2 2 0 0 1 14 6.83z"/></svg>
-          <span class="likes-count" id="like-count-1">0</span>
-        </button>
-        <button class="icon-btn dislike-button" onclick="dislikePost(1)" aria-label="Dislike">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 14V2"/><path d="M9 18.12 10 14H3.17a2 2 0 0 1-1.94-2.5l2.29-9A2 2 0 0 1 5.45 1H17a2 2 0 0 1 2 2v9a2 2 0 0 1-.59 1.41L12.83 19A2 2 0 0 1 10 17.17z"/></svg>
-          <span class="dislikes-count" id="dislike-count-1">0</span>
-        </button>
-        <button class="icon-btn comment-button" onclick="openComments(1)" aria-label="Comment">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          Comment
-        </button>
-        <a class="read-button" href="blog-post-1.html">Read Full Post</a>
-        <div class="share-row">
-          <a class="share-circle share-fb" title="Share on Facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://foridgd.github.io/my-website/blog-post-1.html">
+  <div class="arch-strip">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="card">
+      <div class="contact-grid">
+        <a class="contact-item" href="https://www.facebook.com/profile.php?id=100029673194176" target="_blank">
+          <span class="contact-circle c-fb">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06C2 17.08 5.66 21.24 10.44 22v-7.03H7.9v-2.91h2.54V9.85c0-2.51 1.49-3.9 3.77-3.9 1.09 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.63.78-1.63 1.57v1.88h2.78l-.44 2.91h-2.34V22C18.34 21.24 22 17.08 22 12.06z"/></svg>
-          </a>
-          <a class="share-circle share-wa" title="Share on WhatsApp" target="_blank" href="https://wa.me/?text=https://foridgd.github.io/my-website/blog-post-1.html">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.79.47 3.47 1.29 4.93L2 22l5.28-1.38a9.87 9.87 0 0 0 4.76 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2zm0 18.06h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.13.82.84-3.05-.2-.31a8.2 8.2 0 0 1-1.26-4.28c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.55-3.7 8.24-8.25 8.24zm4.52-6.17c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.16.24-.64.81-.78.97-.14.17-.29.19-.53.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.24-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.14.16-.24.24-.4.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.42h-.48c-.16 0-.43.06-.66.31-.23.24-.86.85-.86 2.06 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.23-.17-.48-.29z"/></svg>
-          </a>
-          <button class="share-circle share-copy" title="Copy link" onclick="copyLink('https://foridgd.github.io/my-website/blog-post-1.html', 1)" aria-label="Copy link">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-          </button>
-        </div>
+          </span>
+          <span>Facebook</span>
+        </a>
+        <a class="contact-item" href="mailto:foridahmed380@gmail.com">
+          <span class="contact-circle c-mail">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+          </span>
+          <span>Gmail</span>
+        </a>
+        <a class="contact-item" href="tel:+8801308039178">
+          <span class="contact-circle c-phone">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </span>
+          <span>01308039178</span>
+        </a>
       </div>
-      <div class="comments-section" style="display: none;">
-        <h4>Comments</h4>
-        <ul class="comments-list"></ul>
-        <textarea class="comment-input" placeholder="Add a comment"></textarea><br>
-        <button class="add-comment-button" onclick="addComment(1)">Add Comment</button>
-      </div>
-    </article>
+    </div>
+  </section>
 
-    <article class="post" id="blog-post-2">
-      <span class="post-date">Published on 24-10-2023</span>
-      <h3>Blog Post 2: Islamic History</h3>
-      <p class="post-body">وَ هُوَ اللّٰهُ فِی السَّمٰوٰتِ وَ فِی الۡاَرۡضِ ؕ یَعۡلَمُ سِرَّكُمۡ وَ جَهۡرَكُمۡ وَ یَعۡلَمُ مَا تَكۡسِبُوۡنَ ﴿۳﴾
-আর আসমানসমূহ ও যমীনে তিনিই আল্লাহ, তিনি জানেন তোমাদের গোপন ও প্রকাশ্য এবং জানেন যা তোমরা অর্জন কর। (আল-বায়ান)
-        
+</div>
 
-আসমানসমূহ আর যমীনে তিনিই আল্লাহ, তোমাদের গোপন বিষয়াদি আর তোমাদের প্রকাশ্য বিষয়াদি সম্পর্কে তিনি জানেন, আর তিনি জানেন যা তোমরা উপার্জন কর। (তাইসিরুল)
+<footer>
+  <p>&copy; 2023–2026 Forid Ahmed's Personal Website</p>
+</footer>
 
-আকাশসমূহ ও পৃথিবীতে ঐ এক আল্লাহই রয়েছেন, তোমাদের অপ্রকাশ্য ও প্রকাশ্য সব অবস্থাই তিনি জানেন, আর তোমরা যা কিছু কর তাও তিনি পূর্ণরূপে অবগত আছেন। 
-
-And He is Allah, [the only deity] in the heavens and the earth. He knows your secret and what you make public, and He knows that which you earn. Sahih International</p>
-      <div class="blog-interactions">
-        <button class="icon-btn like-button" onclick="likePost(2)" aria-label="Like">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h6.83a2 2 0 0 1 1.94 2.5l-2.29 9A2 2 0 0 1 18.55 23H7a2 2 0 0 1-2-2V12a2 2 0 0 1 .59-1.41L11.17 5A2 2 0 0 1 14 6.83z"/></svg>
-          <span class="likes-count" id="like-count-2">0</span>
-        </button>
-        <button class="icon-btn dislike-button" onclick="dislikePost(2)" aria-label="Dislike">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 14V2"/><path d="M9 18.12 10 14H3.17a2 2 0 0 1-1.94-2.5l2.29-9A2 2 0 0 1 5.45 1H17a2 2 0 0 1 2 2v9a2 2 0 0 1-.59 1.41L12.83 19A2 2 0 0 1 10 17.17z"/></svg>
-          <span class="dislikes-count" id="dislike-count-2">0</span>
-        </button>
-        <button class="icon-btn comment-button" onclick="openComments(2)" aria-label="Comment">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          Comment
-        </button>
-        <a class="read-button" href="blog-post-2.html">Read Full Post</a>
-        <div class="share-row">
-          <a class="share-circle share-fb" title="Share on Facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://foridgd.github.io/my-website/blog-post-2.html">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06C2 17.08 5.66 21.24 10.44 22v-7.03H7.9v-2.91h2.54V9.85c0-2.51 1.49-3.9 3.77-3.9 1.09 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.63.78-1.63 1.57v1.88h2.78l-.44 2.91h-2.34V22C18.34 21.24 22 17.08 22 12.06z"/></svg>
-          </a>
-          <a class="share-circle share-wa" title="Share on WhatsApp" target="_blank" href="https://wa.me/?text=https://foridgd.github.io/my-website/blog-post-2.html">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.79.47 3.47 1.29 4.93L2 22l5.28-1.38a9.87 9.87 0 0 0 4.76 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2zm0 18.06h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.13.82.84-3.05-.2-.31a8.2 8.2 0 0 1-1.26-4.28c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.55-3.7 8.24-8.25 8.24zm4.52-6.17c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.16.24-.64.81-.78.97-.14.17-.29.19-.53.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.24-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.14.16-.24.24-.4.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.42h-.48c-.16 0-.43.06-.66.31-.23.24-.86.85-.86 2.06 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.23-.17-.48-.29z"/></svg>
-          </a>
-          <button class="share-circle share-copy" title="Copy link" onclick="copyLink('https://foridgd.github.io/my-website/blog-post-2.html', 2)" aria-label="Copy link">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-          </button>
-        </div>
-      </div>
-      <div class="comments-section" style="display: none;">
-        <h4>Comments</h4>
-        <ul class="comments-list"></ul>
-        <textarea class="comment-input" placeholder="Add a comment"></textarea><br>
-        <button class="add-comment-button" onclick="addComment(2)">Add Comment</button>
-      </div>
-    </article>
-
-    <article class="post" id="blog-post-3">
-      <span class="post-date">Published on 25-10-2023</span>
-      <h3>Blog Post 3: Islamic history</h3>
-      <p class="post-body">কালো জাদু (Black Magic) = বিজ্ঞান? — যুক্তিসহ আলোচনা
+<script>
+  /* ===========================================================
+     ব্লগ পোস্ট ডেটা — নতুন পোস্ট যোগ করতে চাইলে শুধু নিচের
+     blogPosts array-এর একদম উপরে (শুরুতে) একটা নতুন অবজেক্ট বসিয়ে দিন।
+     - id অবশ্যই ইউনিক হতে হবে (আগের সবচেয়ে বড় id + 1 ব্যবহার করুন)
+     - image না থাকলে image ফিল্ডটা বাদ দিন বা "" রাখুন
+     - body তে multi-line টেক্সট চাইলে backtick (`) দিয়ে লিখুন
+     নতুন পোস্ট array-এর সবচেয়ে উপরে বসালে সেটাই পেজের সবার উপরে দেখাবে।
+     =========================================================== */
+  const blogPosts = [
+    {
+      id: 6,
+      date: "08-08-2026",
+      title: "Blog Post 6: ",
+      image: "",
+      link: "blog-post-6.html",
+      body: `যখন দুনিয়া প্রশ্ন করে, তখন বিশ্বাস চুপচাপ বলে—আল্লাহ জানেন, তিনিই যথেষ্ট।`
+    },
+    {
+      id: 5,
+      date: "07-08-2026",
+      title: "Blog Post 5: ...",
+      image: "js.jpeg",
+      link: "blog-post-5.html",
+      body: `দুনিয়া যদি হৃদয়ে আসন গাঁড়ে, আখিরাত ধীরে ধীরে দূরে সরে যায়—ইবনুল কাইয়্যিমের উপলব্ধি। (ইবনুল কাইয়্যিম, আল-ফাওয়াইদ)`
+    },
+    {
+      id: 4,
+      date: "06-08-2026",
+      title: "Blog Post 4: Islamic motivate",
+      image: "",
+      link: "blog-post-4.html",
+      body: `কোনোকিছু না পাওয়ার বেদনায় যখন বুকটা ভারী হয়ে আসবে, তখন হাসপাতালের সেই মানুষটার কথা ভাববেন যে যন্ত্রের সাহায্য ছাড়া একটা নিঃশ্বাসও নিতে পারে না। অথবা সেই লোকটার কথা যার দিন আর রাতগুলো কাটে ফুটপাতের অস্বাস্থ্যকর কাদামাটির সাথে, ডাস্টবিনের আবর্জনা থেকে যাকে খুঁজে নিতে হচ্ছে খাবার। কিংবা সেই চলৎ-শক্তিহীন, বাক-শক্তিহীন মানুষটার কথা—বিছানায় শুয়ে সারাদিন ফ্যালফ্যাল চোখে তাকিয়ে থাকা ছাড়া যার জীবনে আর কোনো অনুষঙ্গ নেই।`
+    },
+    {
+      id: 3,
+      date: "25-10-2023",
+      title: "Blog Post 3: Islamic history",
+      image: "",
+      link: "blog-post-3.html",
+      body: `কালো জাদু (Black Magic) = বিজ্ঞান? — যুক্তিসহ আলোচনা
 অনেকে প্রশ্ন করে—কালো জাদু বা Black Magic কি সত্য? এর পেছনে কি কোনো যুক্তি আছে?
 আমি আমার শহরে বসে সৌদি আরবে থাকা একজন মানুষের সঙ্গে ভিডিও কলে সরাসরি কথা বলছি—এটা কীভাবে সম্ভব?
 আমি মোবাইল নেটওয়ার্ক টাওয়ারের মাধ্যমে এক স্থান থেকে অন্য স্থানে তাৎক্ষণিকভাবে কথা বলছি—চোখে তো কিছুই দেখি না। যেমন, আমরা বাতাস দেখি না, কিন্তু তার অস্তিত্ব অস্বীকারও করতে পারি না।
@@ -634,122 +639,96 @@ And He is Allah, [the only deity] in the heavens and the earth. He knows your se
 অথবা
 👉 ইখলাস, ফালাক ও নাস (তিন কুল) পড়া অত্যন্ত গুরুত্বপূর্ণ।
 বিজ্ঞান ক্ষণস্থায়ী,
-আর আখিরাত চিরস্থায়ী।</p>
+আর আখিরাত চিরস্থায়ী।`
+    },
+    {
+      id: 2,
+      date: "24-10-2023",
+      title: "Blog Post 2: Islamic History",
+      image: "",
+      link: "blog-post-2.html",
+      body: `وَ هُوَ اللّٰهُ فِی السَّمٰوٰتِ وَ فِی الۡاَرۡضِ ؕ یَعۡلَمُ سِرَّكُمۡ وَ جَهۡرَكُمۡ وَ یَعۡلَمُ مَا تَكۡسِبُوۡنَ ﴿۳﴾
+আর আসমানসমূহ ও যমীনে তিনিই আল্লাহ, তিনি জানেন তোমাদের গোপন ও প্রকাশ্য এবং জানেন যা তোমরা অর্জন কর। (আল-বায়ান)
+
+আসমানসমূহ আর যমীনে তিনিই আল্লাহ, তোমাদের গোপন বিষয়াদি আর তোমাদের প্রকাশ্য বিষয়াদি সম্পর্কে তিনি জানেন, আর তিনি জানেন যা তোমরা উপার্জন কর। (তাইসিরুল)
+
+আকাশসমূহ ও পৃথিবীতে ঐ এক আল্লাহই রয়েছেন, তোমাদের অপ্রকাশ্য ও প্রকাশ্য সব অবস্থাই তিনি জানেন, আর তোমরা যা কিছু কর তাও তিনি পূর্ণরূপে অবগত আছেন।
+
+And He is Allah, [the only deity] in the heavens and the earth. He knows your secret and what you make public, and He knows that which you earn. Sahih International`
+    },
+    {
+      id: 1,
+      date: "23-10-2023",
+      title: "Blog Post 1: Islamic Story of Beauty",
+      image: "",
+      link: "blog-post-1.html",
+      body: `আল্লাহর ওপর অটল বিশ্বাস রাখলে জীবনের কঠিন পথগুলোও অনেকটা সহজ হয়ে যায়, কারণ তিনি সবসময় ধৈর্যশীলদের সাথেই থাকেন।`
+    }
+  ];
+
+  /* ===== টেমপ্লেট থেকে একটা পোস্টের সম্পূর্ণ HTML তৈরি করে ===== */
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  function postTemplate(p) {
+    const siteBase = 'https://foridgd.github.io/my-website/';
+    const fullUrl = siteBase + p.link;
+    const imageHtml = p.image
+      ? `<img class="post-image" src="${p.image}" alt="${escapeHtml(p.title)} image">`
+      : '';
+    return `
+    <article class="post" id="blog-post-${p.id}">
+      ${imageHtml}
+      <div class="post-content">
+      <span class="post-date">Published on ${p.date}</span>
+      <h3>${escapeHtml(p.title)}</h3>
+      <p class="post-body">${escapeHtml(p.body).replace(/\n/g, '<br>')}</p>
       <div class="blog-interactions">
-        <button class="icon-btn like-button" onclick="likePost(3)" aria-label="Like">
+        <button class="icon-btn like-button" onclick="likePost(${p.id})" aria-label="Like">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h6.83a2 2 0 0 1 1.94 2.5l-2.29 9A2 2 0 0 1 18.55 23H7a2 2 0 0 1-2-2V12a2 2 0 0 1 .59-1.41L11.17 5A2 2 0 0 1 14 6.83z"/></svg>
-          <span class="likes-count" id="like-count-3">0</span>
+          <span class="likes-count" id="like-count-${p.id}">0</span>
         </button>
-        <button class="icon-btn dislike-button" onclick="dislikePost(3)" aria-label="Dislike">
+        <button class="icon-btn dislike-button" onclick="dislikePost(${p.id})" aria-label="Dislike">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 14V2"/><path d="M9 18.12 10 14H3.17a2 2 0 0 1-1.94-2.5l2.29-9A2 2 0 0 1 5.45 1H17a2 2 0 0 1 2 2v9a2 2 0 0 1-.59 1.41L12.83 19A2 2 0 0 1 10 17.17z"/></svg>
-          <span class="dislikes-count" id="dislike-count-3">0</span>
+          <span class="dislikes-count" id="dislike-count-${p.id}">0</span>
         </button>
-        <button class="icon-btn comment-button" onclick="openComments(3)" aria-label="Comment">
+        <button class="icon-btn comment-button" onclick="openComments(${p.id})" aria-label="Comment">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
           Comment
         </button>
-        <a class="read-button" href="blog-post-3.html">Read Full Post</a>
+        <a class="read-button" href="${p.link}">Read Full Post</a>
         <div class="share-row">
-          <a class="share-circle share-fb" title="Share on Facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://foridgd.github.io/my-website/blog-post-3.html">
+          <a class="share-circle share-fb" title="Share on Facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=${fullUrl}">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06C2 17.08 5.66 21.24 10.44 22v-7.03H7.9v-2.91h2.54V9.85c0-2.51 1.49-3.9 3.77-3.9 1.09 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.63.78-1.63 1.57v1.88h2.78l-.44 2.91h-2.34V22C18.34 21.24 22 17.08 22 12.06z"/></svg>
           </a>
-          <a class="share-circle share-wa" title="Share on WhatsApp" target="_blank" href="https://wa.me/?text=https://foridgd.github.io/my-website/blog-post-3.html">
+          <a class="share-circle share-wa" title="Share on WhatsApp" target="_blank" href="https://wa.me/?text=${fullUrl}">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.79.47 3.47 1.29 4.93L2 22l5.28-1.38a9.87 9.87 0 0 0 4.76 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2zm0 18.06h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.13.82.84-3.05-.2-.31a8.2 8.2 0 0 1-1.26-4.28c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.55-3.7 8.24-8.25 8.24zm4.52-6.17c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.16.24-.64.81-.78.97-.14.17-.29.19-.53.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.24-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.14.16-.24.24-.4.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.42h-.48c-.16 0-.43.06-.66.31-.23.24-.86.85-.86 2.06 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.23-.17-.48-.29z"/></svg>
           </a>
-          <button class="share-circle share-copy" title="Copy link" onclick="copyLink('https://foridgd.github.io/my-website/blog-post-3.html', 3)" aria-label="Copy link">
+          <button class="share-circle share-copy" title="Copy link" onclick="copyLink('${fullUrl}', ${p.id})" aria-label="Copy link">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
           </button>
+          <span class="copy-toast" id="copy-toast-${p.id}">Link copied!</span>
         </div>
       </div>
-      <div class="comments-section" style="display: none;">
+      <div class="comments-section" id="comments-section-${p.id}" style="display: none;">
         <h4>Comments</h4>
-        <ul class="comments-list"></ul>
-        <textarea class="comment-input" placeholder="Add a comment"></textarea><br>
-        <button class="add-comment-button" onclick="addComment(3)">Add Comment</button>
+        <ul class="comments-list" id="comments-list-${p.id}"></ul>
+        <textarea class="comment-input" id="comment-input-${p.id}" placeholder="Add a comment"></textarea><br>
+        <button class="add-comment-button" onclick="addComment(${p.id})">Add Comment</button>
       </div>
-    </article>
-    <!DOCTYPE html>
-<html lang="bn">
-<head>
-<meta charset="UTF-8">
-<title>Islamic Blog</title>
-<style>
-  body { font-family: Arial, "Noto Sans Bengali", sans-serif; background:#f7f7f7; margin:0; padding:20px; }
-  .post { background:#fff; border-radius:10px; padding:20px; max-width:600px; margin:0 auto; box-shadow:0 2px 6px rgba(0,0,0,0.08); }
-  .post-date { color:#888; font-size:13px; }
-  .post-body { font-size:16px; line-height:1.8; margin:15px 0; }
-  .blog-interactions { display:flex; align-items:center; flex-wrap:wrap; gap:14px; border-top:1px solid #eee; padding-top:12px; }
-  .icon-btn { display:flex; align-items:center; gap:6px; background:none; border:none; cursor:pointer; color:#555; font-size:14px; padding:6px 10px; border-radius:6px; transition:background .2s; }
-  .icon-btn:hover { background:#f0f0f0; }
-  .icon-btn svg { width:18px; height:18px; }
-  .like-button.active { color:#1877f2; }
-  .like-button.active svg { fill:#1877f2; }
-  .dislike-button.active { color:#e0245e; }
-  .dislike-button.active svg { fill:#e0245e; }
-  .read-button { text-decoration:none; background:#0b7a3b; color:#fff; padding:6px 14px; border-radius:6px; font-size:14px; }
-  .share-row { display:flex; gap:8px; margin-left:auto; }
-  .share-circle { width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; border:none; cursor:pointer; }
-  .share-fb { background:#1877f2; }
-  .share-wa { background:#25d366; }
-  .share-copy { background:#666; }
-  .share-circle svg { width:16px; height:16px; }
-  .comments-section { margin-top:15px; border-top:1px solid #eee; padding-top:12px; }
-  .comments-list { list-style:none; padding:0; margin:0 0 10px 0; }
-  .comments-list li { background:#f4f4f4; padding:8px 10px; border-radius:6px; margin-bottom:6px; font-size:14px; }
-  .comment-input { width:100%; box-sizing:border-box; padding:8px; border-radius:6px; border:1px solid #ddd; resize:vertical; min-height:50px; font-family:inherit; }
-  .add-comment-button { margin-top:8px; background:#0b7a3b; color:#fff; border:none; padding:6px 14px; border-radius:6px; cursor:pointer; }
-  .copy-toast { font-size:12px; color:#0b7a3b; margin-left:6px; display:none; }
-</style>
-</head>
-<body>
-
-<section id="blog">
-  
-
-  <article class="post" id="blog-post-1">
-    <span class="post-date">Published on 06-08-2026</span>
-    <h3>Blog Post 4: Islamic motivate </h3>
-    <p class="post-body">
-      কোনোকিছু না পাওয়ার বেদনায় যখন বুকটা ভারী হয়ে আসবে, তখন হাসপাতালের সেই মানুষটার কথা ভাববেন যে যন্ত্রের সাহায্য ছাড়া একটা নিঃশ্বাসও নিতে পারে না। অথবা সেই লোকটার কথা যার দিন আর রাতগুলো কাটে ফুটপাতের অস্বাস্থ্যকর কাদামাটির সাথে, ডাস্টবিনের আবর্জনা থেকে যাকে খুঁজে নিতে হচ্ছে খাবার। কিংবা সেই চলৎ-শক্তিহীন, বাক-শক্তিহীন মানুষটার কথা—বিছানায় শুয়ে সারাদিন ফ্যালফ্যাল চোখে তাকিয়ে থাকা ছাড়া যার জীবনে আর কোনো অনুষঙ্গ নেই।
-    </p>
-    <div class="blog-interactions">
-      <button class="icon-btn like-button" onclick="likePost(1)" aria-label="Like">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h6.83a2 2 0 0 1 1.94 2.5l-2.29 9A2 2 0 0 1 18.55 23H7a2 2 0 0 1-2-2V12a2 2 0 0 1 .59-1.41L11.17 5A2 2 0 0 1 14 6.83z"/></svg>
-        <span class="likes-count" id="like-count-1">0</span>
-      </button>
-      <button class="icon-btn dislike-button" onclick="dislikePost(1)" aria-label="Dislike">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 14V2"/><path d="M9 18.12 10 14H3.17a2 2 0 0 1-1.94-2.5l2.29-9A2 2 0 0 1 5.45 1H17a2 2 0 0 1 2 2v9a2 2 0 0 1-.59 1.41L12.83 19A2 2 0 0 1 10 17.17z"/></svg>
-        <span class="dislikes-count" id="dislike-count-1">0</span>
-      </button>
-      <button class="icon-btn comment-button" onclick="openComments(1)" aria-label="Comment">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        Comment
-      </button>
-      <a class="read-button" href="blog-post-1.html">Read Full Post</a>
-      <div class="share-row">
-        <a class="share-circle share-fb" title="Share on Facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://foridgd.github.io/my-website/blog-post-1.html">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06C2 17.08 5.66 21.24 10.44 22v-7.03H7.9v-2.91h2.54V9.85c0-2.51 1.49-3.9 3.77-3.9 1.09 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.63.78-1.63 1.57v1.88h2.78l-.44 2.91h-2.34V22C18.34 21.24 22 17.08 22 12.06z"/></svg>
-        </a>
-        <a class="share-circle share-wa" title="Share on WhatsApp" target="_blank" href="https://wa.me/?text=https://foridgd.github.io/my-website/blog-post-1.html">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.79.47 3.47 1.29 4.93L2 22l5.28-1.38a9.87 9.87 0 0 0 4.76 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2zm0 18.06h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.13.82.84-3.05-.2-.31a8.2 8.2 0 0 1-1.26-4.28c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.55-3.7 8.24-8.25 8.24zm4.52-6.17c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.16.24-.64.81-.78.97-.14.17-.29.19-.53.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.24-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.14.16-.24.24-.4.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.42h-.48c-.16 0-.43.06-.66.31-.23.24-.86.85-.86 2.06 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.23-.17-.48-.29z"/></svg>
-        </a>
-        <button class="share-circle share-copy" title="Copy link" onclick="copyLink('https://foridgd.github.io/my-website/blog-post-1.html', 1)" aria-label="Copy link">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-        </button>
-        <span class="copy-toast" id="copy-toast-1">Link copied!</span>
       </div>
-    </div>
-    <div class="comments-section" id="comments-section-1" style="display: none;">
-      <h4>Comments</h4>
-      <ul class="comments-list" id="comments-list-1"></ul>
-      <textarea class="comment-input" id="comment-input-1" placeholder="Add a comment"></textarea><br>
-      <button class="add-comment-button" onclick="addComment(1)">Add Comment</button>
-    </div>
-  </article>
-</section>
+    </article>`;
+  }
 
-<script>
-  // প্রতিটি পোস্টের অবস্থা (like/dislike/comments) মেমোরিতে রাখা হচ্ছে
+  function renderBlogPosts() {
+    const container = document.getElementById('blog-posts-container');
+    container.innerHTML = blogPosts.map(postTemplate).join('');
+  }
+
+  /* ===== প্রতিটি পোস্টের like/dislike/comment অবস্থা মেমোরিতে রাখা হচ্ছে ===== */
   const postState = {};
 
   function getState(id) {
@@ -808,11 +787,13 @@ And He is Allah, [the only deity] in the heavens and the earth. He knows your se
 
   function openComments(id) {
     const section = document.getElementById(`comments-section-${id}`);
+    if (!section) return;
     section.style.display = (section.style.display === 'none' || !section.style.display) ? 'block' : 'none';
   }
 
   function addComment(id) {
     const input = document.getElementById(`comment-input-${id}`);
+    if (!input) return;
     const text = input.value.trim();
     if (!text) return;
 
@@ -829,124 +810,17 @@ And He is Allah, [the only deity] in the heavens and the earth. He knows your se
   function copyLink(url, id) {
     navigator.clipboard.writeText(url).then(() => {
       const toast = document.getElementById(`copy-toast-${id}`);
-      toast.style.display = 'inline';
-      setTimeout(() => { toast.style.display = 'none'; }, 1500);
+      if (toast) {
+        toast.style.display = 'inline';
+        setTimeout(() => { toast.style.display = 'none'; }, 1500);
+      }
     }).catch(() => {
       alert('Link: ' + url);
     });
   }
-</script>
 
-</body>
-</html>
-
-  </section>
-
-  <div class="arch-strip">
-    <span></span><span></span><span></span><span></span><span></span>
-  </div>
-
-  <section id="contact">
-    <h2>Contact</h2>
-    <div class="card">
-      <div class="contact-grid">
-        <a class="contact-item" href="https://www.facebook.com/profile.php?id=100029673194176" target="_blank">
-          <span class="contact-circle c-fb">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06C2 17.08 5.66 21.24 10.44 22v-7.03H7.9v-2.91h2.54V9.85c0-2.51 1.49-3.9 3.77-3.9 1.09 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.63.78-1.63 1.57v1.88h2.78l-.44 2.91h-2.34V22C18.34 21.24 22 17.08 22 12.06z"/></svg>
-          </span>
-          <span>Facebook</span>
-        </a>
-        <a class="contact-item" href="mailto:foridahmed380@gmail.com">
-          <span class="contact-circle c-mail">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
-          </span>
-          <span>Gmail</span>
-        </a>
-        <a class="contact-item" href="tel:+8801308039178">
-          <span class="contact-circle c-phone">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          </span>
-          <span>01308039178</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-</div>
-
-<footer>
-  <p>&copy; 2023–2026 Forid Ahmed's Personal Website</p>
-</footer>
-
-<script>
-  const postState = {
-    1: { likes: 0, dislikes: 0, userVote: null },
-    2: { likes: 0, dislikes: 0, userVote: null },
-    3: { likes: 0, dislikes: 0, userVote: null }
-  };
-
-  function updateCounts(postId) {
-    document.getElementById('like-count-' + postId).textContent = postState[postId].likes;
-    document.getElementById('dislike-count-' + postId).textContent = postState[postId].dislikes;
-
-    const article = document.getElementById('blog-post-' + postId);
-    const likeBtn = article.querySelector('.like-button');
-    const dislikeBtn = article.querySelector('.dislike-button');
-    likeBtn.classList.toggle('active', postState[postId].userVote === 'like');
-    dislikeBtn.classList.toggle('active', postState[postId].userVote === 'dislike');
-  }
-
-  function likePost(postId) {
-    const state = postState[postId];
-    if (state.userVote === 'like') {
-      state.likes--;
-      state.userVote = null;
-    } else {
-      if (state.userVote === 'dislike') state.dislikes--;
-      state.likes++;
-      state.userVote = 'like';
-    }
-    updateCounts(postId);
-  }
-
-  function dislikePost(postId) {
-    const state = postState[postId];
-    if (state.userVote === 'dislike') {
-      state.dislikes--;
-      state.userVote = null;
-    } else {
-      if (state.userVote === 'like') state.likes--;
-      state.dislikes++;
-      state.userVote = 'dislike';
-    }
-    updateCounts(postId);
-  }
-
-  function openComments(postId) {
-    const article = document.getElementById('blog-post-' + postId);
-    const section = article.querySelector('.comments-section');
-    section.style.display = (section.style.display === 'none') ? 'block' : 'none';
-  }
-
-  function addComment(postId) {
-    const article = document.getElementById('blog-post-' + postId);
-    const input = article.querySelector('.comment-input');
-    const list = article.querySelector('.comments-list');
-    if (input.value.trim() !== '') {
-      const li = document.createElement('li');
-      li.textContent = input.value;
-      list.appendChild(li);
-      input.value = '';
-    }
-  }
-
-  function copyLink(url, postId) {
-    navigator.clipboard.writeText(url).then(() => {
-      alert('লিংক কপি হয়েছে!');
-    }).catch(() => {
-      prompt('লিংকটি কপি করুন:', url);
-    });
-  }
+  /* ===== পেজ লোড হওয়ার সাথে সাথে সব পোস্ট রেন্ডার হবে ===== */
+  renderBlogPosts();
 </script>
 </body>
 </html>
