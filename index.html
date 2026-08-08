@@ -712,46 +712,7 @@
       dislikeBtn.classList.add('active');
     }
     updateCounts(id, state);
-  }
 
-  function updateCounts(id, state) {
-    document.getElementById(`like-count-${id}`).textContent = state.likes;
-    document.getElementById(`dislike-count-${id}`).textContent = state.dislikes;
-  }
-
-  function openComments(id) {
-    const section = document.getElementById(`comments-section-${id}`);
-    section.style.display = (section.style.display === 'none' || !section.style.display) ? 'block' : 'none';
-  }
-
-  function addComment(id) {
-    const input = document.getElementById(`comment-input-${id}`);
-    const text = input.value.trim();
-    if (!text) return;
-
-    const state = getState(id);
-    state.comments.push(text);
-
-    const li = document.createElement('li');
-    li.textContent = text;
-    document.getElementById(`comments-list-${id}`).appendChild(li);
-
-    input.value = '';
-  }
-
-  function copyLink(url, id) {
-    navigator.clipboard.writeText(url).then(() => {
-      const toast = document.getElementById(`copy-toast-${id}`);
-      toast.style.display = 'inline';
-      setTimeout(() => { toast.style.display = 'none'; }, 1500);
-    }).catch(() => {
-      alert('Link: ' + url);
-    });
-  }
-</script>
-
-</body>
-</html>
 
   </section>
 
