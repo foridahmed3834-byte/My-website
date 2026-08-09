@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="bn">
 <head>
@@ -588,7 +589,7 @@
      নতুন পোস্ট array-এর সবচেয়ে উপরে বসালে সেটাই পেজের সবার উপরে দেখাবে।
      =========================================================== */
   const blogPosts = [{
-      id: 6,
+      id: 7,
       date: "08-08-2026",
       title: "Blog Post 7: ....",
       image: "",
@@ -737,83 +738,14 @@ And He is Allah, [the only deity] in the heavens and the earth. He knows your se
     container.innerHTML = blogPosts.map(postTemplate).join('');
   }
 
-  /* ===== প্রতিটি পোস্টের like/dislike/comment অবস্থা মেমোরিতে রাখা হচ্ছে ===== */
-  const postState = {};
-
-  function getState(id) {
-    if (!postState[id]) {
-      postState[id] = { likes: 0, dislikes: 0, userVote: null, comments: [] };
-    }
-    return postState[id];
-  }
-
-  function likePost(id) {
-    const state = getState(id);
-    const likeBtn = document.querySelector(`#blog-post-${id} .like-button`);
-    const dislikeBtn = document.querySelector(`#blog-post-${id} .dislike-button`);
-
-    if (state.userVote === 'like') {
-      state.likes--;
-      state.userVote = null;
-      likeBtn.classList.remove('active');
-    } else {
-      if (state.userVote === 'dislike') {
-        state.dislikes--;
-        dislikeBtn.classList.remove('active');
-      }
-      state.likes++;
-      state.userVote = 'like';
-      likeBtn.classList.add('active');
-    }
-    updateCounts(id, state);
-  }
-
-  function dislikePost(id) {
-    const state = getState(id);
-    const likeBtn = document.querySelector(`#blog-post-${id} .like-button`);
-    const dislikeBtn = document.querySelector(`#blog-post-${id} .dislike-button`);
-
-    if (state.userVote === 'dislike') {
-      state.dislikes--;
-      state.userVote = null;
-      dislikeBtn.classList.remove('active');
-    } else {
-      if (state.userVote === 'like') {
-        state.likes--;
-        likeBtn.classList.remove('active');
-      }
-      state.dislikes++;
-      state.userVote = 'dislike';
-      dislikeBtn.classList.add('active');
-    }
-    updateCounts(id, state);
-  }
-
-  function updateCounts(id, state) {
-    document.getElementById(`like-count-${id}`).textContent = state.likes;
-    document.getElementById(`dislike-count-${id}`).textContent = state.dislikes;
-  }
+  /* ===== likePost / dislikePost / addComment are now defined in the
+     Firebase module script below, and attached to window so the
+     onclick="" handlers above can still find them. ===== */
 
   function openComments(id) {
     const section = document.getElementById(`comments-section-${id}`);
     if (!section) return;
     section.style.display = (section.style.display === 'none' || !section.style.display) ? 'block' : 'none';
-  }
-
-  function addComment(id) {
-    const input = document.getElementById(`comment-input-${id}`);
-    if (!input) return;
-    const text = input.value.trim();
-    if (!text) return;
-
-    const state = getState(id);
-    state.comments.push(text);
-
-    const li = document.createElement('li');
-    li.textContent = text;
-    document.getElementById(`comments-list-${id}`).appendChild(li);
-
-    input.value = '';
   }
 
   function copyLink(url, id) {
@@ -830,6 +762,130 @@ And He is Allah, [the only deity] in the heavens and the earth. He knows your se
 
   /* ===== পেজ লোড হওয়ার সাথে সাথে সব পোস্ট রেন্ডার হবে ===== */
   renderBlogPosts();
+</script>
+
+<!-- ===== Firebase: persists likes / dislikes / comments to Firestore ===== -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import {
+    getFirestore, doc, getDoc, setDoc, runTransaction,
+    collection, addDoc, onSnapshot, query, orderBy, serverTimestamp
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDNDB5tNrSYFRMlRnOj5k-sV_ZO_inZ8HM",
+    authDomain: "my-project-4eeb3.firebaseapp.com",
+    databaseURL: "https://my-project-4eeb3-default-rtdb.firebaseio.com",
+    projectId: "my-project-4eeb3",
+    storageBucket: "my-project-4eeb3.firebasestorage.app",
+    messagingSenderId: "615358852165",
+    appId: "1:615358852165:web:585119b685dec00f33472c",
+    measurementId: "G-4PJ1MJ3CVC"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // localStorage remembers which way THIS browser already voted,
+  // so a reload/re-visit doesn't let the same visitor double-vote.
+  const voteKey = (id) => `vote_post_${id}`;
+
+  function setVoteButtonState(id) {
+    const vote = localStorage.getItem(voteKey(id));
+    const likeBtn = document.querySelector(`#blog-post-${id} .like-button`);
+    const dislikeBtn = document.querySelector(`#blog-post-${id} .dislike-button`);
+    if (likeBtn) likeBtn.classList.toggle('active', vote === 'like');
+    if (dislikeBtn) dislikeBtn.classList.toggle('active', vote === 'dislike');
+  }
+
+  // Live counts + live comments for one post
+  function listenToPost(id) {
+    const postRef = doc(db, "posts", String(id));
+
+    onSnapshot(postRef, (snap) => {
+      const data = snap.exists() ? snap.data() : { likes: 0, dislikes: 0 };
+      const likeEl = document.getElementById(`like-count-${id}`);
+      const dislikeEl = document.getElementById(`dislike-count-${id}`);
+      if (likeEl) likeEl.textContent = data.likes || 0;
+      if (dislikeEl) dislikeEl.textContent = data.dislikes || 0;
+    }, (err) => console.error(`posts/${id} snapshot error:`, err));
+
+    const commentsQuery = query(
+      collection(db, "posts", String(id), "comments"),
+      orderBy("createdAt", "asc")
+    );
+    onSnapshot(commentsQuery, (snap) => {
+      const list = document.getElementById(`comments-list-${id}`);
+      if (!list) return;
+      list.innerHTML = "";
+      snap.forEach((docSnap) => {
+        const li = document.createElement('li');
+        li.textContent = docSnap.data().text || '';
+        list.appendChild(li);
+      });
+    }, (err) => console.error(`posts/${id}/comments snapshot error:`, err));
+  }
+
+  async function vote(id, type) {
+    const ref = doc(db, "posts", String(id));
+    const key = voteKey(id);
+    const current = localStorage.getItem(key);
+
+    try {
+      await runTransaction(db, async (tx) => {
+        const snap = await tx.get(ref);
+        const data = snap.exists() ? snap.data() : { likes: 0, dislikes: 0 };
+        let likes = data.likes || 0;
+        let dislikes = data.dislikes || 0;
+
+        if (current === type) {
+          // clicking the same button again removes the vote
+          if (type === 'like') likes = Math.max(0, likes - 1);
+          else dislikes = Math.max(0, dislikes - 1);
+          localStorage.removeItem(key);
+        } else {
+          if (current === 'like') likes = Math.max(0, likes - 1);
+          if (current === 'dislike') dislikes = Math.max(0, dislikes - 1);
+          if (type === 'like') likes++; else dislikes++;
+          localStorage.setItem(key, type);
+        }
+
+        tx.set(ref, { likes, dislikes }, { merge: true });
+      });
+    } catch (e) {
+      console.error("Vote failed:", e);
+      return;
+    }
+
+    setVoteButtonState(id);
+  }
+
+  window.likePost = (id) => vote(id, 'like');
+  window.dislikePost = (id) => vote(id, 'dislike');
+
+  window.addComment = async function (id) {
+    const input = document.getElementById(`comment-input-${id}`);
+    if (!input) return;
+    const text = input.value.trim();
+    if (!text) return;
+    input.value = '';
+
+    try {
+      await addDoc(collection(db, "posts", String(id), "comments"), {
+        text,
+        createdAt: serverTimestamp()
+      });
+    } catch (e) {
+      console.error("Comment failed:", e);
+    }
+  };
+
+  // blogPosts / renderBlogPosts() ran synchronously in the script above,
+  // so the post DOM already exists by the time this module runs.
+  blogPosts.forEach((p) => {
+    listenToPost(p.id);
+    setVoteButtonState(p.id);
+  });
 </script>
 </body>
 </html>
