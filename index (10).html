@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forid(s) Ahmed — Personal Website</title>
+
+<!-- Open Graph tags for Facebook preview -->
+<meta property="og:title" content="Forid Ahmed's Personal Website - Islamic Blog" />
+<meta property="og:description" content="Assalamualaikum! Visit my personal website for Islamic blog posts, my profile, education, and skills." />
+<meta property="og:image" content="https://foridgd.github.io/my-website/preview.jpg" />
+<meta property="og:url" content="https://foridgd.github.io/my-website/" />
+<meta property="og:type" content="website" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --emerald-deep:#0B3D2E;
+    --emerald-mid:#145C45;
+    --emerald-soft:#1D7A5C;
+    --sage-bg:#F3F6F2;
+    --card:#FFFFFF;
+    --gold:#C69B3D;
+    --gold-soft:#E7D4A5;
+    --ink:#16241D;
+    --ink-soft:#51625A;
+    --line:#E1E8E2;
+    --radius:16px;
+    --shadow:0 8px 24px rgba(11,61,46,0.08);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--sage-bg);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces',serif;
+    color:var(--emerald-deep);
+    margin:0 0 .4em;
+  }
+  a{color:inherit;}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-weight:500;
+  }
+
+  /* ===== Decorative arch pattern (signature motif) ===== */
+  .arch-divider{
+    height:22px;
+    width:100%;
+    background-image: radial-gradient(circle at 11px -3px, transparent 11px, var(--sage-bg) 12px);
+    background-size:22px 22px;
+    background-position:top;
+    background-color:var(--emerald-deep);
+  }
+  .arch-strip{
+    display:flex;
+    justify-content:center;
+    gap:14px;
+    padding:18px 0;
+  }
+  .arch-strip span{
+    width:10px;height:10px;
+    border-radius:50% 50% 50% 0;
+    transform:rotate(45deg);
+    background:var(--gold-soft);
+    opacity:.8;
+  }
+  .arch-strip span:nth-child(odd){background:var(--emerald-soft); opacity:.55;}
+
+  /* ===== Header / Hero ===== */
+  header.hero{
+    background:linear-gradient(160deg,var(--emerald-deep),var(--emerald-mid) 70%);
+    color:#fff;
+    padding:64px 20px 40px;
+    text-align:center;
+    position:relative;
+  }
+  .avatar-circle{
+    width:88px;height:88px;
+    margin:0 auto 18px;
+    border-radius:50%;
+    background:var(--gold);
+    color:var(--emerald-deep);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces',serif;
+    font-size:32px;
+    font-weight:600;
+    box-shadow:0 6px 20px rgba(0,0,0,.25);
+    border:3px solid rgba(255,255,255,.25);
+    overflow:hidden;
+  }
+  .avatar-circle img{
+    width:100%;height:100%;
+    object-fit:cover;
+    border-radius:50%;
+  }
+  header.hero h1{
+    color:#fff;
+    font-size:clamp(28px,4vw,40px);
+    font-weight:600;
+  }
+  header.hero p.tagline{
+    max-width:520px;
+    margin:0 auto;
+    color:rgba(255,255,255,.82);
+    font-size:15px;
+  }
+
+  /* ===== Nav ===== */
+  nav{
+    background:var(--emerald-deep);
+    position:sticky;
+    top:0;
+    z-index:20;
+    border-top:1px solid rgba(255,255,255,.08);
+  }
+  nav ul{
+    list-style:none;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:4px;
+    margin:0;
+    padding:6px 8px;
+  }
+  nav a{
+    display:inline-block;
+    text-decoration:none;
+    color:rgba(255,255,255,.85);
+    font-weight:600;
+    font-size:13px;
+    padding:9px 16px;
+    border-radius:999px;
+    transition:background .2s, color .2s;
+  }
+  nav a:hover{
+    background:rgba(255,255,255,.12);
+    color:#fff;
+  }
+
+  /* ===== Layout ===== */
+  .content{
+    max-width:760px;
+    margin:0 auto;
+    padding:30px 18px 10px;
+  }
+  section{margin-bottom:34px;}
+  .intro-text{
+    text-align:center;
+    color:var(--ink-soft);
+    max-width:560px;
+    margin:0 auto 30px;
+    font-size:15px;
+  }
+
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:22px 24px;
+    box-shadow:var(--shadow);
+  }
+  section > h2{
+    font-size:13px;
+    font-family:'IBM Plex Mono',monospace;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    color:var(--emerald-mid);
+    font-weight:500;
+    margin-bottom:14px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  section > h2::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:var(--line);
+  }
+
+  /* Profile info grid */
+  .profile-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:14px;
+  }
+  .profile-item{
+    background:var(--sage-bg);
+    border-radius:12px;
+    padding:12px 14px;
+  }
+  .profile-item .label{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;
+    color:var(--ink-soft);
+    text-transform:uppercase;
+    letter-spacing:.06em;
+  }
+  .profile-item .value{
+    font-weight:600;
+    color:var(--emerald-deep);
+    font-size:15px;
+    margin-top:2px;
+  }
+
+  /* Education */
+  .edu-row{
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
+    padding:10px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .edu-row:last-child{border-bottom:none;}
+  .edu-row .dot{
+    width:10px;height:10px;border-radius:50%;
+    background:var(--gold);margin-top:6px;flex-shrink:0;
+  }
+  .edu-row .edu-title{font-weight:600;color:var(--emerald-deep);}
+  .edu-row .edu-sub{font-size:13px;color:var(--ink-soft);}
+
+  /* Skills pills */
+  .skills-list{
+    list-style:none;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    padding:0;margin:0;
+  }
+  .skills-list li{
+    background:rgba(20,92,69,.08);
+    color:var(--emerald-mid);
+    border:1px solid rgba(20,92,69,.18);
+    padding:7px 16px;
+    border-radius:999px;
+    font-size:13px;
+    font-weight:600;
+  }
+
+  /* ===== Blog ===== */
+  article.post{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:22px 24px;
+    margin-bottom:18px;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+  article.post .post-image{
+    display:block;
+    width:calc(100% + 48px);
+    margin:-22px -24px 16px;
+    max-width:calc(100% + 48px);
+    aspect-ratio:16/9;
+    object-fit:cover;
+  }
+  @media (max-width:480px){
+    article.post .post-image{
+      width:calc(100% + 32px);
+      max-width:calc(100% + 32px);
+      margin:-18px -16px 16px;
+    }
+  }
+  article.post h3{font-size:18px;}
+  article.post .post-date{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    color:var(--gold);
+    margin-bottom:10px;
+    display:block;
+  }
+  article.post p.post-body{
+    color:var(--ink-soft);
+    font-size:14px;
+  }
+
+  .blog-interactions{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:8px;
+    border-top:1px solid var(--line);
+    padding-top:14px;
+    margin-top:14px;
+  }
+  .icon-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    background:var(--sage-bg);
+    color:var(--ink);
+    border:1px solid var(--line);
+    border-radius:999px;
+    padding:7px 13px;
+    cursor:pointer;
+    font-size:12.5px;
+    font-weight:600;
+    font-family:'Inter',sans-serif;
+    transition:transform .15s, background .2s, color .2s, border-color .2s;
+  }
+  .icon-btn svg{width:15px;height:15px;flex-shrink:0;}
+  .icon-btn:hover{transform:translateY(-1px); background:#fff; border-color:var(--emerald-soft);}
+  .icon-btn:active{transform:translateY(0);}
+  .like-button.active{background:var(--emerald-mid); color:#fff; border-color:var(--emerald-mid);}
+  .dislike-button.active{background:#B23A48; color:#fff; border-color:#B23A48;}
+
+  .read-button{
+    background:var(--emerald-deep);
+    color:#fff;
+    border:none;
+    padding:8px 16px;
+    border-radius:999px;
+    cursor:pointer;
+    font-size:12.5px;
+    font-weight:700;
+    text-decoration:none;
+    transition:background .2s;
+  }
+  .read-button:hover{background:var(--emerald-mid);}
+
+  /* share row — direct round icon buttons */
+  .share-row{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-left:auto;
+  }
+  .share-circle{
+    width:34px;height:34px;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    text-decoration:none;
+    border:none;
+    cursor:pointer;
+    color:#fff;
+    transition:transform .15s, filter .2s;
+    flex-shrink:0;
+  }
+  .share-circle svg{width:16px;height:16px;}
+  .share-circle:hover{transform:translateY(-2px); filter:brightness(1.08);}
+  .share-fb{background:#1877F2;}
+  .share-wa{background:#25D366;}
+  .share-copy{background:var(--ink-soft);}
+
+  .comments-section{
+    background:var(--sage-bg);
+    border-radius:12px;
+    padding:14px 16px;
+    margin-top:14px;
+  }
+  .comments-section h4{
+    margin:0 0 8px;
+    font-size:13px;
+    font-family:'IBM Plex Mono',monospace;
+    text-transform:uppercase;
+    color:var(--emerald-mid);
+  }
+  .comments-list{list-style:none; padding:0; margin:0 0 10px;}
+  .comments-list li{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:8px 10px;
+    font-size:13.5px;
+    margin-bottom:6px;
+  }
+  .comment-input{
+    width:100%;
+    padding:9px 10px;
+    border:1px solid var(--line);
+    border-radius:8px;
+    font-size:13.5px;
+    font-family:'Inter',sans-serif;
+    resize:vertical;
+    min-height:44px;
+  }
+  .add-comment-button{
+    background:var(--emerald-deep);
+    color:#fff;
+    border:none;
+    padding:7px 14px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:12.5px;
+    font-weight:600;
+    margin-top:8px;
+    transition:background .2s;
+  }
+  .add-comment-button:hover{background:var(--emerald-mid);}
+
+  /* ===== Contact ===== */
+  .contact-grid{
+    display:flex;
+    gap:22px;
+    flex-wrap:wrap;
+    justify-content:center;
+    padding:6px 0 4px;
+  }
+  .contact-item{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:8px;
+    text-decoration:none;
+    color:var(--ink);
+    width:92px;
+  }
+  .contact-circle{
+    width:58px;height:58px;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    color:#fff;
+    box-shadow:0 6px 16px rgba(11,61,46,.18);
+    transition:transform .18s, box-shadow .18s;
+  }
+  .contact-circle svg{width:24px;height:24px;}
+  .contact-item:hover .contact-circle{
+    transform:translateY(-4px) scale(1.04);
+    box-shadow:0 10px 22px rgba(11,61,46,.28);
+  }
+  .contact-item span{font-size:12.5px; font-weight:600; text-align:center; color:var(--ink-soft);}
+  .c-fb{background:#1877F2;}
+  .c-mail{background:var(--gold);}
+  .c-phone{background:var(--emerald-mid);}
+
+  footer{
+    text-align:center;
+    padding:22px 12px 26px;
+    background:var(--emerald-deep);
+    color:rgba(255,255,255,.7);
+    font-size:12px;
+  }
+
+  @media (max-width:480px){
+    .content{padding:22px 14px 6px;}
+    .card,article.post{padding:18px 16px;}
+    .share-row{width:100%; margin-left:0; justify-content:flex-end;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="avatar-circle"><img src="profile.jpg" alt="Forid Ahmed"></div>
+  <span class="eyebrow" style="color:var(--gold-soft);">Civil Engineering · (FS)</span>
+  <h1>Forid Ahmed</h1>
+  <p class="tagline">Assalamualaikum — welcome to my personal space. Here I share my journey, my studies, and reflections from an Islamic perspective.</p>
+</header>
+
+<div class="arch-divider"></div>
+
+<nav>
+  <ul>
+    <li><a href="#profile">Profile</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="content">
+
+  <p class="intro-text">Assalamualaikum and welcome to my personal website. I'm Forid Ahmed, and I'm excited to share my journey, skills, and insights with you.</p>
+
+  <section id="profile">
+    <h2>Profile</h2>
+    <div class="card">
+      <div class="profile-grid">
+        <div class="profile-item"><div class="label">Name</div><div class="value">Forid Ahmed</div></div>
+        <div class="profile-item"><div class="label">Birth</div><div class="value">February 2, 2004</div></div>
+        <div class="profile-item"><div class="label">Religion</div><div class="value">Islam</div></div>
+        <div class="profile-item"><div class="label">Country</div><div class="value">Bangladesh</div></div>
+        <div class="profile-item"><div class="label">Present Location</div><div class="value">Mymensingh</div></div>
+        <div class="profile-item"><div class="label">Relationship Status</div><div class="value">Single</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <h2>Education</h2>
+    <div class="card">
+      <div class="edu-row">
+        <span class="dot"></span>
+        <div>
+          <div class="edu-title">Latu Mondol High School</div>
+          <div class="edu-sub">Secondary Education</div>
+        </div>
+      </div>
+      <div class="edu-row">
+        <span class="dot"></span>
+        <div>
+          <div class="edu-title">Diploma in Civil Engineering</div>
+          <div class="edu-sub">institute</div>
+        </div>
+      </div>
+      <div class="edu-row">
+        <span class="dot"></span>
+        <div>
+          <div class="edu-title">B.Sc in Civil Engineering</div>
+          <div class="edu-sub">Planned — future </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>Skills and Learning</h2>
+    <div class="card">
+      <ul class="skills-list">
+        <li>Basic Programming</li>
+        <li>Engineering</li>
+        <li>Blog Writing</li>
+        <li>Communication</li>
+        <li>Kali Linux User</li>
+        <li>Image Forensics</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="arch-strip">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <section id="blog">
+    <h2>Islamic Blog</h2>
+    <div id="blog-posts-container"></div>
+  </section>
+
+  <div class="arch-strip">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="card">
+      <div class="contact-grid">
+        <a class="contact-item" href="https://www.facebook.com/profile.php?id=100029673194176" target="_blank">
+          <span class="contact-circle c-fb">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06C2 17.08 5.66 21.24 10.44 22v-7.03H7.9v-2.91h2.54V9.85c0-2.51 1.49-3.9 3.77-3.9 1.09 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.63.78-1.63 1.57v1.88h2.78l-.44 2.91h-2.34V22C18.34 21.24 22 17.08 22 12.06z"/></svg>
+          </span>
+          <span>Facebook</span>
+        </a>
+        <a class="contact-item" href="mailto:foridahmed380@gmail.com">
+          <span class="contact-circle c-mail">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+          </span>
+          <span>Gmail</span>
+        </a>
+        <a class="contact-item" href="tel:+8801308039178">
+          <span class="contact-circle c-phone">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </span>
+          <span>01308039178</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <p>&copy; 2023–2026 Forid Ahmed's Personal Website</p>
+</footer>
+
+<script>
+  /* ===========================================================
+     ব্লগ পোস্ট ডেটা — নতুন পোস্ট যোগ করতে চাইলে শুধু নিচের
+     blogPosts array-এর একদম উপরে (শুরুতে) একটা নতুন অবজেক্ট বসিয়ে দিন।
+     - id অবশ্যই ইউনিক হতে হবে (আগের সবচেয়ে বড় id + 1 ব্যবহার করুন)
+     - image না থাকলে image ফিল্ডটা বাদ দিন বা "" রাখুন
+     - body তে multi-line টেক্সট চাইলে backtick (`) দিয়ে লিখুন
+     নতুন পোস্ট array-এর সবচেয়ে উপরে বসালে সেটাই পেজের সবার উপরে দেখাবে।
+     =========================================================== */
+  const blogPosts = [{
+      id: 7,
+      date: "08-08-2026",
+      title: "Blog Post 7: ....",
+      image: "",
+      link: "blog-post-7.html",
+      body: `বিজ্ঞান ও স্রষ্টা:   "যে বিজ্ঞান স্রষ্টার তৈরি প্রকৃতির সব রহস্য ভেদ করতে অক্ষম,
+ তাকে বাটখারা বানিয়ে সেই প্রকৃতির স্রষ্টাকে জাস্টিফাই করাটা কি নিছক ছেলেমানুষি নয়?"...`
+    },
+
+    {
+      id: 6,
+      date: "08-08-2026",
+      title: "Blog Post 6: ",
+      image: "",
+      link: "blog-post-6.html",
+      body: `যখন দুনিয়া প্রশ্ন করে, তখন বিশ্বাস চুপচাপ বলে—আল্লাহ জানেন, তিনিই যথেষ্ট।`
+    },
+    {
+      id: 5,
+      date: "07-08-2026",
+      title: "Blog Post 5: ...",
+      image: "js.jpeg",
+      link: "blog-post-5.html",
+      body: `দুনিয়া যদি হৃদয়ে আসন গাঁড়ে, আখিরাত ধীরে ধীরে দূরে সরে যায়—ইবনুল কাইয়্যিমের উপলব্ধি। (ইবনুল কাইয়্যিম, আল-ফাওয়াইদ)`
+    },
+    {
+      id: 4,
+      date: "06-08-2026",
+      title: "Blog Post 4: Islamic motivate",
+      image: "",
+      link: "blog-post-4.html",
+      body: `কোনোকিছু না পাওয়ার বেদনায় যখন বুকটা ভারী হয়ে আসবে, তখন হাসপাতালের সেই মানুষটার কথা ভাববেন যে যন্ত্রের সাহায্য ছাড়া একটা নিঃশ্বাসও নিতে পারে না। অথবা সেই লোকটার কথা যার দিন আর রাতগুলো কাটে ফুটপাতের অস্বাস্থ্যকর কাদামাটির সাথে, ডাস্টবিনের আবর্জনা থেকে যাকে খুঁজে নিতে হচ্ছে খাবার। কিংবা সেই চলৎ-শক্তিহীন, বাক-শক্তিহীন মানুষটার কথা—বিছানায় শুয়ে সারাদিন ফ্যালফ্যাল চোখে তাকিয়ে থাকা ছাড়া যার জীবনে আর কোনো অনুষঙ্গ নেই।`
+    },
+    {
+      id: 3,
+      date: "25-10-2023",
+      title: "Blog Post 3: Islamic history",
+      image: "",
+      link: "blog-post-3.html",
+      body: `কালো জাদু (Black Magic) = বিজ্ঞান? — যুক্তিসহ আলোচনা
+অনেকে প্রশ্ন করে—কালো জাদু বা Black Magic কি সত্য? এর পেছনে কি কোনো যুক্তি আছে?
+আমি আমার শহরে বসে সৌদি আরবে থাকা একজন মানুষের সঙ্গে ভিডিও কলে সরাসরি কথা বলছি—এটা কীভাবে সম্ভব?
+আমি মোবাইল নেটওয়ার্ক টাওয়ারের মাধ্যমে এক স্থান থেকে অন্য স্থানে তাৎক্ষণিকভাবে কথা বলছি—চোখে তো কিছুই দেখি না। যেমন, আমরা বাতাস দেখি না, কিন্তু তার অস্তিত্ব অস্বীকারও করতে পারি না।
+এটাই বাস্তব সত্য—আমি অন্য একজন মানুষের সঙ্গে সরাসরি কথা বলছি।
+আমি ঢাকা থেকে বসে ময়মনসিংহের একটি CCTV সিস্টেম কন্ট্রোল করছি।
+ক্যামেরা ৩৬০ ডিগ্রি ঘোরানো যায়, কথা বলা যায়, দিকনির্দেশনাও দেওয়া যায়।
+অনেকে বলবে—এগুলো সব টেলিকমিউনিকেশন প্রযুক্তি,
+প্রোগ্রামিং ল্যাঙ্গুয়েজ এবং আধুনিক প্রযুক্তির মাধ্যমে সম্ভব।
+ঠিক তেমনি, কিছু মানুষ শিরক ও কুফরের পথে গিয়ে—
+কোরআনের আয়াতের অর্থ বিকৃত করে,
+হারাম পদ্ধতিতে কিছু কাজ করে থাকে।
+আমরা জানি, সাধারণ অক্ষর A, B, C, D—
+এই অক্ষরগুলো দিয়েই যদি এত বড় প্রযুক্তি, সফটওয়্যার ও সিস্টেম তৈরি করা যায়,
+তাহলে আল্লাহ তাআলার কালাম,
+কোরআনের আয়াতগুলোর শক্তি কত অসীম—তা কল্পনাও করা যায় না।
+এগুলো থেকে নিরাপদ থাকার জন্য— প্রতিদিন ফরজ নামাজের পর
+👉 আয়াতুল কুরসি
+অথবা
+👉 ইখলাস, ফালাক ও নাস (তিন কুল) পড়া অত্যন্ত গুরুত্বপূর্ণ।
+বিজ্ঞান ক্ষণস্থায়ী,
+আর আখিরাত চিরস্থায়ী।`
+    },
+    {
+      id: 2,
+      date: "24-10-2023",
+      title: "Blog Post 2: Islamic History",
+      image: "",
+      link: "blog-post-2.html",
+      body: `وَ هُوَ اللّٰهُ فِی السَّمٰوٰتِ وَ فِی الۡاَرۡضِ ؕ یَعۡلَمُ سِرَّكُمۡ وَ جَهۡرَكُمۡ وَ یَعۡلَمُ مَا تَكۡسِبُوۡنَ ﴿۳﴾
+আর আসমানসমূহ ও যমীনে তিনিই আল্লাহ, তিনি জানেন তোমাদের গোপন ও প্রকাশ্য এবং জানেন যা তোমরা অর্জন কর। (আল-বায়ান)
+
+আসমানসমূহ আর যমীনে তিনিই আল্লাহ, তোমাদের গোপন বিষয়াদি আর তোমাদের প্রকাশ্য বিষয়াদি সম্পর্কে তিনি জানেন, আর তিনি জানেন যা তোমরা উপার্জন কর। (তাইসিরুল)
+
+আকাশসমূহ ও পৃথিবীতে ঐ এক আল্লাহই রয়েছেন, তোমাদের অপ্রকাশ্য ও প্রকাশ্য সব অবস্থাই তিনি জানেন, আর তোমরা যা কিছু কর তাও তিনি পূর্ণরূপে অবগত আছেন।
+
+And He is Allah, [the only deity] in the heavens and the earth. He knows your secret and what you make public, and He knows that which you earn. Sahih International`
+    },
+    {
+      id: 1,
+      date: "23-10-2023",
+      title: "Blog Post 1: Islamic Story of Beauty",
+      image: "",
+      link: "blog-post-1.html",
+      body: `আল্লাহর ওপর অটল বিশ্বাস রাখলে জীবনের কঠিন পথগুলোও অনেকটা সহজ হয়ে যায়, কারণ তিনি সবসময় ধৈর্যশীলদের সাথেই থাকেন।`
+    }
+  ];
+
+  /* ===== টেমপ্লেট থেকে একটা পোস্টের সম্পূর্ণ HTML তৈরি করে ===== */
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  function postTemplate(p) {
+    const siteBase = 'https://foridgd.github.io/my-website/';
+    const fullUrl = siteBase + p.link;
+    const imageHtml = p.image
+      ? `<img class="post-image" src="${p.image}" alt="${escapeHtml(p.title)} image">`
+      : '';
+    return `
+    <article class="post" id="blog-post-${p.id}">
+      ${imageHtml}
+      <div class="post-content">
+      <span class="post-date">Published on ${p.date}</span>
+      <h3>${escapeHtml(p.title)}</h3>
+      <p class="post-body">${escapeHtml(p.body).replace(/\n/g, '<br>')}</p>
+      <div class="blog-interactions">
+        <button class="icon-btn like-button" onclick="likePost(${p.id})" aria-label="Like">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h6.83a2 2 0 0 1 1.94 2.5l-2.29 9A2 2 0 0 1 18.55 23H7a2 2 0 0 1-2-2V12a2 2 0 0 1 .59-1.41L11.17 5A2 2 0 0 1 14 6.83z"/></svg>
+          <span class="likes-count" id="like-count-${p.id}">0</span>
+        </button>
+        <button class="icon-btn dislike-button" onclick="dislikePost(${p.id})" aria-label="Dislike">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 14V2"/><path d="M9 18.12 10 14H3.17a2 2 0 0 1-1.94-2.5l2.29-9A2 2 0 0 1 5.45 1H17a2 2 0 0 1 2 2v9a2 2 0 0 1-.59 1.41L12.83 19A2 2 0 0 1 10 17.17z"/></svg>
+          <span class="dislikes-count" id="dislike-count-${p.id}">0</span>
+        </button>
+        <button class="icon-btn comment-button" onclick="openComments(${p.id})" aria-label="Comment">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Comment
+        </button>
+        <a class="read-button" href="${p.link}">Read Full Post</a>
+        <div class="share-row">
+          <a class="share-circle share-fb" title="Share on Facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=${fullUrl}">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06C2 17.08 5.66 21.24 10.44 22v-7.03H7.9v-2.91h2.54V9.85c0-2.51 1.49-3.9 3.77-3.9 1.09 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.63.78-1.63 1.57v1.88h2.78l-.44 2.91h-2.34V22C18.34 21.24 22 17.08 22 12.06z"/></svg>
+          </a>
+          <a class="share-circle share-wa" title="Share on WhatsApp" target="_blank" href="https://wa.me/?text=${fullUrl}">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.79.47 3.47 1.29 4.93L2 22l5.28-1.38a9.87 9.87 0 0 0 4.76 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2zm0 18.06h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.13.82.84-3.05-.2-.31a8.2 8.2 0 0 1-1.26-4.28c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.55-3.7 8.24-8.25 8.24zm4.52-6.17c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.16.24-.64.81-.78.97-.14.17-.29.19-.53.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.24-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.14.16-.24.24-.4.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.42h-.48c-.16 0-.43.06-.66.31-.23.24-.86.85-.86 2.06 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.23-.17-.48-.29z"/></svg>
+          </a>
+          <button class="share-circle share-copy" title="Copy link" onclick="copyLink('${fullUrl}', ${p.id})" aria-label="Copy link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          </button>
+          <span class="copy-toast" id="copy-toast-${p.id}">Link copied!</span>
+        </div>
+      </div>
+      <div class="comments-section" id="comments-section-${p.id}" style="display: none;">
+        <h4>Comments</h4>
+        <ul class="comments-list" id="comments-list-${p.id}"></ul>
+        <textarea class="comment-input" id="comment-input-${p.id}" placeholder="Add a comment"></textarea><br>
+        <button class="add-comment-button" onclick="addComment(${p.id})">Add Comment</button>
+      </div>
+      </div>
+    </article>`;
+  }
+
+  function renderBlogPosts() {
+    const container = document.getElementById('blog-posts-container');
+    container.innerHTML = blogPosts.map(postTemplate).join('');
+  }
+
+  /* ===== likePost / dislikePost / addComment are now defined in the
+     Firebase module script below, and attached to window so the
+     onclick="" handlers above can still find them. ===== */
+
+  function openComments(id) {
+    const section = document.getElementById(`comments-section-${id}`);
+    if (!section) return;
+    section.style.display = (section.style.display === 'none' || !section.style.display) ? 'block' : 'none';
+  }
+
+  function copyLink(url, id) {
+    navigator.clipboard.writeText(url).then(() => {
+      const toast = document.getElementById(`copy-toast-${id}`);
+      if (toast) {
+        toast.style.display = 'inline';
+        setTimeout(() => { toast.style.display = 'none'; }, 1500);
+      }
+    }).catch(() => {
+      alert('Link: ' + url);
+    });
+  }
+
+  /* ===== পেজ লোড হওয়ার সাথে সাথে সব পোস্ট রেন্ডার হবে ===== */
+  renderBlogPosts();
+</script>
+
+<!-- ===== Firebase: persists likes / dislikes / comments to Firestore ===== -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import {
+    getFirestore, doc, getDoc, setDoc, runTransaction,
+    collection, addDoc, onSnapshot, query, orderBy, serverTimestamp
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDNDB5tNrSYFRMlRnOj5k-sV_ZO_inZ8HM",
+    authDomain: "my-project-4eeb3.firebaseapp.com",
+    databaseURL: "https://my-project-4eeb3-default-rtdb.firebaseio.com",
+    projectId: "my-project-4eeb3",
+    storageBucket: "my-project-4eeb3.firebasestorage.app",
+    messagingSenderId: "615358852165",
+    appId: "1:615358852165:web:585119b685dec00f33472c",
+    measurementId: "G-4PJ1MJ3CVC"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // localStorage remembers which way THIS browser already voted,
+  // so a reload/re-visit doesn't let the same visitor double-vote.
+  const voteKey = (id) => `vote_post_${id}`;
+
+  function setVoteButtonState(id) {
+    const vote = localStorage.getItem(voteKey(id));
+    const likeBtn = document.querySelector(`#blog-post-${id} .like-button`);
+    const dislikeBtn = document.querySelector(`#blog-post-${id} .dislike-button`);
+    if (likeBtn) likeBtn.classList.toggle('active', vote === 'like');
+    if (dislikeBtn) dislikeBtn.classList.toggle('active', vote === 'dislike');
+  }
+
+  // Live counts + live comments for one post
+  function listenToPost(id) {
+    const postRef = doc(db, "posts", String(id));
+
+    onSnapshot(postRef, (snap) => {
+      const data = snap.exists() ? snap.data() : { likes: 0, dislikes: 0 };
+      const likeEl = document.getElementById(`like-count-${id}`);
+      const dislikeEl = document.getElementById(`dislike-count-${id}`);
+      if (likeEl) likeEl.textContent = data.likes || 0;
+      if (dislikeEl) dislikeEl.textContent = data.dislikes || 0;
+    }, (err) => console.error(`posts/${id} snapshot error:`, err));
+
+    const commentsQuery = query(
+      collection(db, "posts", String(id), "comments"),
+      orderBy("createdAt", "asc")
+    );
+    onSnapshot(commentsQuery, (snap) => {
+      const list = document.getElementById(`comments-list-${id}`);
+      if (!list) return;
+      list.innerHTML = "";
+      snap.forEach((docSnap) => {
+        const li = document.createElement('li');
+        li.textContent = docSnap.data().text || '';
+        list.appendChild(li);
+      });
+    }, (err) => console.error(`posts/${id}/comments snapshot error:`, err));
+  }
+
+  async function vote(id, type) {
+    const ref = doc(db, "posts", String(id));
+    const key = voteKey(id);
+    const current = localStorage.getItem(key);
+
+    try {
+      await runTransaction(db, async (tx) => {
+        const snap = await tx.get(ref);
+        const data = snap.exists() ? snap.data() : { likes: 0, dislikes: 0 };
+        let likes = data.likes || 0;
+        let dislikes = data.dislikes || 0;
+
+        if (current === type) {
+          // clicking the same button again removes the vote
+          if (type === 'like') likes = Math.max(0, likes - 1);
+          else dislikes = Math.max(0, dislikes - 1);
+          localStorage.removeItem(key);
+        } else {
+          if (current === 'like') likes = Math.max(0, likes - 1);
+          if (current === 'dislike') dislikes = Math.max(0, dislikes - 1);
+          if (type === 'like') likes++; else dislikes++;
+          localStorage.setItem(key, type);
+        }
+
+        tx.set(ref, { likes, dislikes }, { merge: true });
+      });
+    } catch (e) {
+      console.error("Vote failed:", e);
+      return;
+    }
+
+    setVoteButtonState(id);
+  }
+
+  window.likePost = (id) => vote(id, 'like');
+  window.dislikePost = (id) => vote(id, 'dislike');
+
+  window.addComment = async function (id) {
+    const input = document.getElementById(`comment-input-${id}`);
+    if (!input) return;
+    const text = input.value.trim();
+    if (!text) return;
+    input.value = '';
+
+    try {
+      await addDoc(collection(db, "posts", String(id), "comments"), {
+        text,
+        createdAt: serverTimestamp()
+      });
+    } catch (e) {
+      console.error("Comment failed:", e);
+    }
+  };
+
+  // blogPosts / renderBlogPosts() ran synchronously in the script above,
+  // so the post DOM already exists by the time this module runs.
+  blogPosts.forEach((p) => {
+    listenToPost(p.id);
+    setVoteButtonState(p.id);
+  });
+</script>
+</body>
+</html>
