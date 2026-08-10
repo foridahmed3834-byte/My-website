@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "title": "Blog Post 1: আমার প্রথম ব্লগ — Forid Ahmed",
+    "description": "Forid Ahmed-এর Blog Post 1",
+    "image": "images/blog1.jpg",
+    "date": "2026-08-01",
+    "content": "<p>এখানে Blog Post 1-এর সম্পূর্ণ লেখা লিখুন।</p>"
+  },
+  {
+    "id": 2,
+    "title": "Blog Post 2: নতুন ভাবনা — Forid Ahmed",
+    "description": "Forid Ahmed-এর Blog Post 2",
+    "image": "images/blog2.jpg",
+    "date": "2026-08-02",
+    "content": "<p>এখানে Blog Post 2-এর সম্পূর্ণ লেখা লিখুন।</p>"
+  },
+  {
+    "id": 3,
+    "title": "Blog Post 3: শেখার গল্প — Forid Ahmed",
+    "description": "Forid Ahmed-এর Blog Post 3",
+    "image": "images/blog3.jpg",
+    "date": "2026-08-03",
+    "content": "<p>এখানে Blog Post 3-এর সম্পূর্ণ লেখা লিখুন।</p>"
+  },
+  {
+    "id": 4,
+    "title": "Blog Post 4: প্রযুক্তি ও জীবন — Forid Ahmed",
+    "description": "Forid Ahmed-এর Blog Post 4",
+    "image": "images/blog4.jpg",
+    "date": "2026-08-04",
+    "content": "<p>এখানে Blog Post 4-এর সম্পূর্ণ লেখা লিখুন।</p>"
+  },
+  {
+    "id": 5,
+    "title": "Blog Post 5: জ্ঞানের কথা — Forid Ahmed",
+    "description": "Forid Ahmed-এর Blog Post 5",
+    "image": "images/blog5.jpg",
+    "date": "2026-08-05",
+    "content": "<p>এখানে Blog Post 5-এর সম্পূর্ণ লেখা লিখুন।</p>"
+  },
+  {
+    "id": 6,
+    "title": "Blog Post 6: অনুপ্রেরণার গল্প — Forid Ahmed",
+    "description": "Forid Ahmed-এর Blog Post 6",
+    "image": "images/blog6.jpg",
+    "date": "2026-08-06",
+    "content": "<p>এখানে Blog Post 6-এর সম্পূর্ণ লেখা লিখুন।</p>"
+  },
+  {
+    "id": 7,
+    "title": "Blog Post 7: জীবনের শিক্ষা — Forid Ahmed",
+    "description": "Forid Ahmed-এর Blog Post 7",
+    "image": "images/blog7.jpg",
+    "date": "2026-08-07",
+    "content": "<p>এখানে Blog Post 7-এর সম্পূর্ণ লেখা লিখুন।</p>"
+  },
+  {
+    "id": 8,
+    "title": "Blog Post 8: প্রকৃত রোল মডেল কে? — Forid Ahmed",
+    "description": "প্রকৃত রোল মডেল কে? — Forid Ahmed-এর Blog Post 8",
+    "image": "images/blog8.jpg",
+    "date": "2026-08-08",
+    "content": "<p>এখানে তোমার Blog Post 8-এর সম্পূর্ণ লেখা বসাও।</p>"
+  }
+]
