@@ -57,6 +57,37 @@
     font-weight:500;
   }
 
+  /* ===== Eyebrow: "Civil Engineering" scrolls like a news ticker,
+     "(FS)" stays fixed/static and never moves ===== */
+  .eyebrow-wrap{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    max-width:100%;
+  }
+  .eyebrow-marquee{
+    display:inline-block;
+    overflow:hidden;
+    white-space:nowrap;
+    width:160px;
+    max-width:44vw;
+    vertical-align:middle;
+  }
+  .eyebrow-marquee-track{
+    display:inline-block;
+    padding-left:100%;
+    animation:eyebrow-scroll 7s linear infinite;
+  }
+  @keyframes eyebrow-scroll{
+    from{ transform:translateX(0); }
+    to{ transform:translateX(-100%); }
+  }
+  .eyebrow-fs{
+    flex:0 0 auto;
+    white-space:nowrap;
+  }
+
   /* ===== Decorative arch pattern (signature motif) ===== */
   .arch-divider{
     height:22px;
@@ -458,7 +489,10 @@
 
 <header class="hero">
   <div class="avatar-circle"><img src="profile.jpg" alt="Forid Ahmed"></div>
-  <span class="eyebrow" style="color:var(--gold-soft);">Civil Engineering · (FS)</span>
+  <span class="eyebrow eyebrow-wrap" style="color:var(--gold-soft);">
+    <span class="eyebrow-marquee"><span class="eyebrow-marquee-track">Civil Engineering</span></span>
+    <span class="eyebrow-fs">· (FS)</span>
+  </span>
   <h1>Forid Ahmed</h1>
   <p class="tagline">Assalamualaikum — welcome to my personal space. Here I share my journey, my studies, and reflections from an Islamic perspective.</p>
 </header>
@@ -697,6 +731,7 @@ And He is Allah, [the only deity] in the heavens and the earth. He knows your se
   function postTemplate(p) {
     const siteBase = 'https://foridgd.github.io/my-website/';
     const fullUrl = siteBase + p.link;
+    const encodedUrl = encodeURIComponent(fullUrl);
     const imageHtml = p.image
       ? `<img class="post-image" src="${p.image}" alt="${escapeHtml(p.title)} image">`
       : '';
@@ -722,10 +757,10 @@ And He is Allah, [the only deity] in the heavens and the earth. He knows your se
         </button>
         <a class="read-button" href="${p.link}">Read Full Post</a>
         <div class="share-row">
-          <a class="share-circle share-fb" title="Share on Facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=${fullUrl}">
+          <a class="share-circle share-fb" title="Share on Facebook" target="_blank" rel="noopener" href="https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06C2 17.08 5.66 21.24 10.44 22v-7.03H7.9v-2.91h2.54V9.85c0-2.51 1.49-3.9 3.77-3.9 1.09 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.63.78-1.63 1.57v1.88h2.78l-.44 2.91h-2.34V22C18.34 21.24 22 17.08 22 12.06z"/></svg>
           </a>
-          <a class="share-circle share-wa" title="Share on WhatsApp" target="_blank" href="https://wa.me/?text=${fullUrl}">
+          <a class="share-circle share-wa" title="Share on WhatsApp" target="_blank" rel="noopener" href="https://wa.me/?text=${encodedUrl}">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.79.47 3.47 1.29 4.93L2 22l5.28-1.38a9.87 9.87 0 0 0 4.76 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2zm0 18.06h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.13.82.84-3.05-.2-.31a8.2 8.2 0 0 1-1.26-4.28c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.55-3.7 8.24-8.25 8.24zm4.52-6.17c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.16.24-.64.81-.78.97-.14.17-.29.19-.53.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.24-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.14.16-.24.24-.4.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.42h-.48c-.16 0-.43.06-.66.31-.23.24-.86.85-.86 2.06 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.23-.17-.48-.29z"/></svg>
           </a>
           <button class="share-circle share-copy" title="Copy link" onclick="copyLink('${fullUrl}', ${p.id})" aria-label="Copy link">
@@ -759,16 +794,42 @@ And He is Allah, [the only deity] in the heavens and the earth. He knows your se
     section.style.display = (section.style.display === 'none' || !section.style.display) ? 'block' : 'none';
   }
 
-  function copyLink(url, id) {
-    navigator.clipboard.writeText(url).then(() => {
-      const toast = document.getElementById(`copy-toast-${id}`);
-      if (toast) {
-        toast.style.display = 'inline';
-        setTimeout(() => { toast.style.display = 'none'; }, 1500);
-      }
-    }).catch(() => {
+  function showCopyToast(id) {
+    const toast = document.getElementById(`copy-toast-${id}`);
+    if (toast) {
+      toast.style.display = 'inline';
+      setTimeout(() => { toast.style.display = 'none'; }, 1500);
+    }
+  }
+
+  function fallbackCopy(url, id) {
+    // Works even on http:// / file:// where navigator.clipboard is blocked
+    const temp = document.createElement('textarea');
+    temp.value = url;
+    temp.style.position = 'fixed';
+    temp.style.opacity = '0';
+    document.body.appendChild(temp);
+    temp.focus();
+    temp.select();
+    try {
+      document.execCommand('copy');
+      showCopyToast(id);
+    } catch (e) {
       alert('Link: ' + url);
-    });
+    }
+    document.body.removeChild(temp);
+  }
+
+  function copyLink(url, id) {
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(url).then(() => {
+        showCopyToast(id);
+      }).catch(() => {
+        fallbackCopy(url, id);
+      });
+    } else {
+      fallbackCopy(url, id);
+    }
   }
 
   /* ===== পেজ লোড হওয়ার সাথে সাথে সব পোস্ট রেন্ডার হবে ===== */
