@@ -91,29 +91,91 @@
   /* ===== Fire effect on the "Civil Engineering" ticker text:
      animated flame color + flickering glow (text-shadow based,
      avoids background-clip:text + filter, which some browsers
-     render as fully invisible text) ===== */
+     render as fully invisible text). Two overlapping animations —
+     a fast irregular color/glow flicker and a slower, subtle
+     vertical jitter — approximate a real flame's restlessness. A
+     small flame icon flickers on its own timing beside the text
+     so the two don't move in perfect lockstep (which reads as
+     "fake"). ===== */
   .eyebrow-fire{
+    display:inline-flex;
+    align-items:center;
+    gap:4px;
     font-weight:600;
     color:#FFB35C;
-    animation: eyebrow-fire-flicker 1.8s ease-in-out infinite;
+    animation: eyebrow-fire-flicker 1.3s ease-in-out infinite,
+               eyebrow-fire-jitter 2.6s ease-in-out infinite;
+    transform-origin:center bottom;
+  }
+  .eyebrow-fire-icon{
+    position:relative;
+    display:inline-block;
+    font-size:.9em;
+    line-height:1;
+    animation: eyebrow-fire-icon-flicker 0.9s ease-in-out infinite;
+    filter:drop-shadow(0 0 4px #FF5A1F);
+  }
+  .eyebrow-spark{
+    position:absolute;
+    width:3px;
+    height:3px;
+    border-radius:50%;
+    background:#FFD86B;
+    box-shadow:0 0 4px #FF8A3D, 0 0 7px #FF5A1F;
+    opacity:0;
+    animation: eyebrow-spark-rise 1.3s ease-out infinite;
+  }
+  .eyebrow-spark:nth-child(1){ left:1px; bottom:1px; animation-delay:0s; }
+  .eyebrow-spark:nth-child(2){ left:6px; bottom:0; animation-delay:.4s; background:#FF9A3D; }
+  .eyebrow-spark:nth-child(3){ left:3px; bottom:2px; animation-delay:.8s; }
+  @keyframes eyebrow-spark-rise{
+    0%{ opacity:0; transform:translateY(0) scale(1); }
+    12%{ opacity:1; }
+    65%{ opacity:.55; }
+    100%{ opacity:0; transform:translateY(-13px) scale(.25); }
   }
   @keyframes eyebrow-fire-flicker{
-    0%,100%{
+    0%{
       color:#FFC97A;
       text-shadow:0 0 4px #FF8A3D, 0 0 10px #FF5A1F, 0 0 16px #E7311A;
     }
-    25%{
-      color:#FFD86B;
-      text-shadow:0 0 3px #FFB35C, 0 0 8px #FF6A2E, 0 0 14px #E7311A;
+    18%{
+      color:#FFE29A;
+      text-shadow:0 0 6px #FFB35C, 0 0 13px #FF7A2E, 0 0 19px #FF4400;
     }
-    50%{
+    34%{
       color:#FF9A3D;
-      text-shadow:0 0 5px #FF7A2E, 0 0 12px #FF4400, 0 0 20px #E7311A;
+      text-shadow:0 0 3px #FF7A2E, 0 0 8px #E7311A, 0 0 13px #C21D0F;
     }
-    75%{
-      color:#FFB35C;
-      text-shadow:0 0 3px #FF8A3D, 0 0 9px #FF5A1F, 0 0 15px #E7311A;
+    52%{
+      color:#FFD86B;
+      text-shadow:0 0 5px #FFB35C, 0 0 12px #FF6A2E, 0 0 22px #E7311A;
     }
+    68%{
+      color:#FF8A3D;
+      text-shadow:0 0 2px #FF6A2E, 0 0 7px #E7311A, 0 0 11px #C21D0F;
+    }
+    84%{
+      color:#FFC97A;
+      text-shadow:0 0 5px #FF8A3D, 0 0 11px #FF5A1F, 0 0 18px #E7311A;
+    }
+    100%{
+      color:#FFC97A;
+      text-shadow:0 0 4px #FF8A3D, 0 0 10px #FF5A1F, 0 0 16px #E7311A;
+    }
+  }
+  @keyframes eyebrow-fire-jitter{
+    0%,100%{ transform:translateY(0) scaleY(1); }
+    20%{ transform:translateY(-0.5px) scaleY(1.015); }
+    45%{ transform:translateY(0.5px) scaleY(0.98); }
+    70%{ transform:translateY(-0.3px) scaleY(1.02); }
+    88%{ transform:translateY(0.2px) scaleY(0.99); }
+  }
+  @keyframes eyebrow-fire-icon-flicker{
+    0%,100%{ opacity:1; transform:scale(1) rotate(-2deg); }
+    30%{ opacity:.75; transform:scale(.9) rotate(3deg); }
+    55%{ opacity:1; transform:scale(1.08) rotate(-3deg); }
+    80%{ opacity:.85; transform:scale(.95) rotate(2deg); }
   }
   .eyebrow-fs{
     flex:0 0 auto;
@@ -522,7 +584,7 @@
 <header class="hero">
   <div class="avatar-circle"><img src="profile.jpg" alt="Forid Ahmed"></div>
   <span class="eyebrow eyebrow-wrap" style="color:var(--gold-soft);">
-    <span class="eyebrow-marquee"><span class="eyebrow-marquee-track"><span class="eyebrow-fire">Civil Engineering</span><span class="eyebrow-fire" aria-hidden="true">Civil Engineering</span></span></span>
+    <span class="eyebrow-marquee"><span class="eyebrow-marquee-track"><span class="eyebrow-fire"><span class="eyebrow-fire-icon" aria-hidden="true">🔥<span class="eyebrow-spark"></span><span class="eyebrow-spark"></span><span class="eyebrow-spark"></span></span>Civil Engineering</span><span class="eyebrow-fire" aria-hidden="true"><span class="eyebrow-fire-icon" aria-hidden="true">🔥<span class="eyebrow-spark"></span><span class="eyebrow-spark"></span><span class="eyebrow-spark"></span></span>Civil Engineering</span></span></span>
     <span class="eyebrow-fs">· (FS)</span>
   </span>
   <h1>Forid Ahmed</h1>
