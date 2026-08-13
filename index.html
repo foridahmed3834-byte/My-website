@@ -395,29 +395,8 @@
     aspect-ratio:16/9;
     object-fit:cover;
   }
-  article.post .post-video{
-    display:block;
-    width:calc(100% + 48px);
-    margin:-22px -24px 16px;
-    max-width:calc(100% + 48px);
-    aspect-ratio:16/9;
-    overflow:hidden;
-  }
-  article.post .post-video iframe,
-  article.post .post-video video{
-    display:block;
-    width:100%;
-    height:100%;
-    border:none;
-    background:#000;
-  }
   @media (max-width:480px){
     article.post .post-image{
-      width:calc(100% + 32px);
-      max-width:calc(100% + 32px);
-      margin:-18px -16px 16px;
-    }
-    article.post .post-video{
       width:calc(100% + 32px);
       max-width:calc(100% + 32px);
       margin:-18px -16px 16px;
@@ -734,23 +713,10 @@
      blogPosts array-এর একদম উপরে (শুরুতে) একটা নতুন অবজেক্ট বসিয়ে দিন।
      - id অবশ্যই ইউনিক হতে হবে (আগের সবচেয়ে বড় id + 1 ব্যবহার করুন)
      - image না থাকলে image ফিল্ডটা বাদ দিন বা "" রাখুন
-     - video: ভিডিও ব্লগ পোস্ট বানাতে চাইলে video ফিল্ডে লিংক দিন, যেমন:
-         video: "https://www.youtube.com/watch?v=xxxxxxxxxxx"   (YouTube)
-         video: "https://www.facebook.com/xxx/videos/xxxxxxx"  (Facebook)
-         video: "my-video.mp4"                                  (নিজের আপলোড করা ভিডিও ফাইল)
-       video ফিল্ড থাকলে সেটা image-এর জায়গায় ওপরে দেখাবে (image ফিল্ড রাখলেও
-       video থাকা অবস্থায় সেটা ব্যবহার হবে না)। ভিডিও না চাইলে video ফিল্ডটা বাদ দিন।
      - body তে multi-line টেক্সট চাইলে backtick (`) দিয়ে লিখুন
      নতুন পোস্ট array-এর সবচেয়ে উপরে বসালে সেটাই পেজের সবার উপরে দেখাবে।
      =========================================================== */
   const blogPosts = [{
-  id: 11,
-  date: "13-08-2026",
-  title: "Blog Post 11: ...",
-  video: "video-11.mp4",
-  link: "blog-post-11.html",
-  body: `...`
-}{
 
       id: 10,
 
@@ -885,33 +851,16 @@ And He is Allah, [the only deity] in the heavens and the earth. He knows your se
     return div.innerHTML;
   }
 
-  /* ===== ভিডিও লিংক থেকে embed HTML বানায়।
-     সাপোর্ট করে: YouTube লিংক, Facebook ভিডিও লিংক, অথবা সরাসরি
-     ভিডিও ফাইলের লিংক (.mp4 / .webm ইত্যাদি) ===== */
-  function getVideoHtml(video) {
-    if (!video) return '';
-    const yt = video.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/shorts\/)([\w-]+)/);
-    if (yt) {
-      return `<div class="post-video"><iframe src="https://www.youtube.com/embed/${yt[1]}" title="video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe></div>`;
-    }
-    if (video.includes('facebook.com') || video.includes('fb.watch')) {
-      const encoded = encodeURIComponent(video);
-      return `<div class="post-video"><iframe src="https://www.facebook.com/plugins/video.php?href=${encoded}&show_text=0" scrolling="no" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" loading="lazy"></iframe></div>`;
-    }
-    return `<div class="post-video"><video controls preload="metadata"><source src="${video}">আপনার ব্রাউজার ভিডিও সাপোর্ট করে না।</video></div>`;
-  }
-
   function postTemplate(p) {
     const siteBase = 'https://foridahmed3834-byte.github.io/My-website/';
     const fullUrl = siteBase + p.link;
     const encodedUrl = encodeURIComponent(fullUrl);
-    const videoHtml = getVideoHtml(p.video);
-    const imageHtml = (!p.video && p.image)
+    const imageHtml = p.image
       ? `<img class="post-image" src="${p.image}" alt="${escapeHtml(p.title)} image">`
       : '';
     return `
     <article class="post" id="blog-post-${p.id}">
-      ${videoHtml}${imageHtml}
+      ${imageHtml}
       <div class="post-content">
       <span class="post-date">Published on ${p.date}</span>
       <h3>${escapeHtml(p.title)}</h3>
